@@ -7,7 +7,7 @@
   .label {color:blue; font-style:normal; font-weight:bold}
 </style>
 <s:head />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Struts 2 Form Tags - Edit Person</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
 <s:checkboxlist key="person.carModels" list="carModelsAvailable" />-->
 <tr>
     <td colspan="2"><div align="right">
-	<button id="saveChanges" value="Save Changes">Save Changes</button>
+	<button id="saveChanges" name="saveChanges" value="Save Changes">Save Changes</button>
 </div></td>
 </tr>
 </tbody></table></form>
