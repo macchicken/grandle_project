@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <package name="example" namespace="/example" extends="default,json-default">
+        <action name="HelloWorld" class="example.HelloWorld">
+            <result>/WEB-INF/jsp/example/HelloWorld.jsp</result>
+        </action>
+        <action name="Acecontent" class="example.AceAction">
+            <result>/WEB-INF/jsp/example/aceAdmin.jsp</result>
+        </action>
+
+        <action name="Login_*" method="{1}" class="example.Login">
+            <result name="input">/WEB-INF/jsp/example/Login.jsp</result>
+            <result type="redirectAction">Menu</result>
+        </action>
+
+        <!-- <action name="*" class="example.ExampleSupport">
+            <result>/WEB-INF/jsp/example/{1}.jsp</result>
+        </action> -->
+
+        <action name="HelloWorldSec" class="example.HelloWorldSecAction">
+            <result>/WEB-INF/jsp/example/HelloWorldSec.jsp</result>
+        </action>
+        <action name="register" class="example.Register" method="execute">
+  			<result name="success">/WEB-INF/jsp/example/thankyou.jsp</result>
+  			<result name="input">/WEB-INF/jsp/example/Register.jsp</result>
+		</action>
+		<action name="registerpage" class="example.RegisterPage" method="execute">
+  			<result name="success">/WEB-INF/jsp/example/Register.jsp</result>
+		</action>
+		<action name="registerInput" class="example.Register" method="input" >
+		    <result name="input">/WEB-INF/jsp/example/Register.jsp</result>
+		</action>
+		<action name="actionspecificexception" class="example.Register" method="throwSecurityException">
+		  <exception-mapping exception="exceptions.SecurityBreachException" 
+		       result="login" />
+		   <result>/WEB-INF/jsp/example/Register.jsp</result>
+		   <result name="login">/WEB-INF/jsp/example/login.jsp</result>
+		</action>
+		<!-- <action name="edit" class="example.EditAction" method="input">
+	    	<result name="input">/WEB-INF/jsp/example/edit.jsp</result>
+	    </action>
+	    <action name="save" class="example.EditAction" method="execute">
+	        <result name="input">/WEB-INF/jsp/example/edit.jsp</result>
+	    	<result name="success">/WEB-INF/jsp/example/editSuccess.jsp</result>
+	    </action> -->
+	    <action name="edit" class="editAction" method="input">
+	    	<result name="input">/WEB-INF/jsp/example/edit.jsp</result>
+	    </action>
+	    <action name="save" class="editAction" method="execute">
+	        <result name="input">/WEB-INF/jsp/example/edit.jsp</result>
+	    	<result name="success">/WEB-INF/jsp/example/editSuccess.jsp</result>
+	    </action>
+	    <action name="savenew" class="editAction" method="executenew">
+        	<result type="json">
+        	    <param name="noCache">true</param>
+        	    <param name="root">result</param>
+        	</result>
+	    </action>
+	    <action name="*Database" class="personInDbAction" method="{1}">
+	    	<result name="success">/WEB-INF/jsp/example/viewdb.jsp</result>
+	        <result name="input">/WEB-INF/jsp/example/inputdb.jsp</result>
+	    </action>
+	    <action name="*Person" class="example.PersonAction" method="{1}">
+  			<result name="success">/WEB-INF/jsp/example/view.jsp</result>
+  			<result name="input">/WEB-INF/jsp/example/input.jsp</result>
+		</action>
+        <!-- Add actions here -->
+    </package>
+
+</struts>
