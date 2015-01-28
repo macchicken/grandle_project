@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,7 +19,7 @@
 <table class="wwFormTable">
 <tbody>
 <s:textfield key="person.firstName" />
-<s:textfield key="firstName" /> 
+<s:textfield key="firstName" />
 <s:textfield key="person.lastName" />
 <s:textfield key="person.email" />
 <s:textfield key="person.phone" />
@@ -113,7 +113,7 @@
 		$("#saveChanges").click( function () {
 			$("#EditpForm").removeAttr("novalidate");
 			/* var validResult = personValidate($("#EditpForm")); */
-			var validResult = personValidateNew($("#EditpForm"));
+			var validResult = personValidateNew();
 			console.log(validResult);return false;
 			if (validResult.length==0){
 			var formurl=$("#EditpForm").attr('action');
