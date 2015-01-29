@@ -43,11 +43,33 @@
 		<script src="<s:url value='/assets/js/html5shiv.min.js'/>"></script>
 		<script src="<s:url value='/assets/js/respond.min.js'/>"></script>
 		<![endif]-->
-		<!--[if !IE]> -->
+		<!--[if !IE]>-->
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery.min.js'>"+"<"+"/script>");
 		</script>
-		<!-- <![endif]-->
+		<!--<![endif]-->
+		
+		<!-- basic scripts -->
+
+		<!--[if IE]>
+			<script type="text/javascript">
+			 window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+			</script>
+		<![endif]-->
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="<s:url value='/assets/js/bootstrap.min.js'/>"></script>
+
+		<!-- page specific plugin scripts -->
+
+		<!-- ace scripts -->
+		<script src="<s:url value='/assets/js/ace-elements.min.js'/>"></script>
+		<script src="<s:url value='/assets/js/ace.min.js'/>"></script>
+		<script src="<s:url value='/assets/js/bootstrap-tag.min.js'/>"></script>
+		<script src="<s:url value='/assets/js/jquery-ui.custom.min.js'/>"></script>
+		<script src="<s:url value='/assets/js/jquery.ui.touch-punch.min.js'/>"></script>
+		<script src="<s:url value='/assets/js/jquery.validate.min.js'/>"></script>
 	</head>
 
 	<body class="no-skin">
@@ -191,28 +213,7 @@
 				<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-
-		<!-- basic scripts -->
-
-		<!--[if IE]>
-<script type="text/javascript">
- window.jQuery || document.write("<script src='<%=path%>/assets/js/jquery1x.min.js'>"+"<"+"/script>");
-</script>
-<![endif]-->
-		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='<%=path%>/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
-		<script src="<s:url value='/assets/js/bootstrap.min.js'/>"></script>
-
-		<!-- page specific plugin scripts -->
-
-		<!-- ace scripts -->
-		<script src="<s:url value='/assets/js/ace-elements.min.js'/>"></script>
-		<script src="<s:url value='/assets/js/ace.min.js'/>"></script>
-		<script src="<s:url value='/assets/js/bootstrap-tag.min.js'/>"></script>
-		<script src="<s:url value='/assets/js/jquery-ui.custom.min.js'/>"></script>
-		<script src="<s:url value='/assets/js/jquery.ui.touch-punch.min.js'/>"></script>
-		<script src="<s:url value='/assets/js/jquery.validate.min.js'/>"></script>
+		
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			$(function ($) {

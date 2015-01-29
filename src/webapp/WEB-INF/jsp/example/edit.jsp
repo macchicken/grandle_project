@@ -18,15 +18,14 @@
 <table class="wwFormTable">
 <tbody>
 <s:textfield key="person.firstName" />
-<s:textfield key="firstName" />
 <s:textfield key="person.lastName" />
 <s:textfield key="person.email" />
 <s:textfield key="person.phone" />
-<!--<s:select key="person.sport" list="sports" />
+<s:select key="person.sport" list="sports" />
 <s:radio key="person.gender" list="genders" />
 <s:select key="person.residency" list="states" listKey="stateAbbr" listValue="stateName" />
 <s:checkbox key="person.over21" />
-<s:checkboxlist key="person.carModels" list="carModelsAvailable" />-->
+<s:checkboxlist key="person.carModels" list="carModelsAvailable" />
 <tr>
     <td colspan="2"><div align="right">
 	<button id="saveChanges" name="saveChanges" value="Save Changes">Save Changes</button>
@@ -101,12 +100,12 @@
 		var personValidateNew=function(){
 			return $("#EditpForm").validate({
                     rules:{
-						"person.firstName":{ 
-						required:true
-						},
-						firstName:{ 
-						required:true
-						}}
+						"person.firstName":{ required:true,minlength:5},
+						"person.lastName":{ required:true,minlength:5}},
+					messages: {
+						"person.firstName": {required:"must have first name",minlength:"must no less tha 5 characters"},
+						"person.lastName": {required:"must have last name",minlength:"must no less tha 5 characters"}
+					}
 					});
 		};
 		$("#saveChanges").click( function () {
