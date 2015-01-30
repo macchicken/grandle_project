@@ -84,54 +84,42 @@
 			console.log(urllink);
 			$("#page-content-area").load(urllink,null, function () {console.log("EditPersonback div load partial page")});});
 		console.log($("#EditpForm"));
-		var personValidate = function (forme) {
-				var elements=forme.find("input:text");
-				var validResult=[];
-				elements.each(function(i,e){
-					if (e.name==="person.firstName"){
-						if ($.trim(e.value)===""){if (e.previousElementSibling==null){$("<td>must have first name</td>").insertBefore(e);}validResult.push(e);}
-					}
-					if (e.name==="person.lastName"){
-						if ($.trim(e.value)===""){if (e.previousElementSibling==null){$("<td>must have last name</td>").insertBefore(e);}validResult.push(e);}
-					}
-				});
-				return validResult;
-			};
-		var personValidateNew=function(){
+		jQuery.validator.addMethod("isNinedigitNum", function(value, element) {   
+			var phoneexpr = /\d{3}-\d{3}-\d{4}/;
+			return this.optional(element) || (phoneexpr.test(value));
+		}, "plz enter valid phone number");
+		var personValidate=function(){
 			return $("#EditpForm").validate({
                     rules:{
 						"person.firstName":{ required:true,minlength:5},
-						"person.lastName":{ required:true,minlength:5}},
+						"person.lastName":{ required:true,minlength:5},
+						"person.email":{email:true},
+						"person.phone":{isNinedigitNum:true}},
 					messages: {
 						"person.firstName": {required:"must have first name",minlength:"must no less tha 5 characters"},
-						"person.lastName": {required:"must have last name",minlength:"must no less tha 5 characters"}
+						"person.lastName": {required:"must have last name",minlength:"must no less tha 5 characters"},
+						"person.email":{email:"Email address not valid"},
+						"person.phone":{isNinedigitNum:"plz enter valid phone number"}
 					}
 					});
 		};
 		$("#saveChanges").click( function () {
 			$("#EditpForm").removeAttr("novalidate");
-			/* var validResult = personValidate($("#EditpForm")); */
-			var validResult = personValidateNew();
-			console.log(validResult);return false;
-			if (validResult.length==0){
+			var validResult = personValidate();console.log(validResult);
+			if (validResult.successList.length==0&&validResult.errorList.length==0){return false;}
+			if (validResult.form()){
 			var formurl=$("#EditpForm").attr('action');
-			var params=$("#EditpForm").serialize();
 			console.log(formurl);
 			jQuery.post(formurl, $("#EditpForm").serialize()).success(function (data, tStatus) {
 				console.log(data);
 				console.log(tStatus);
 				if (tStatus==="success"){
-					if (prevalidResult!=null){
-						for (e in prevalidResult){
-							var mess=prevalidResult[e].previousElementSibling;
-							$(mess).remove();
-						}
-					}
 					var obj = JSON.parse(data);
 					$('#modal-table').modal('show');
 					$('#modal-table').find('input:text').each(function (i, e) {$(e).val(obj[e.id]); });
 				}else{alert(" update failed");
-				}});}else{prevalidResult=validResult;}});
+				}});}else{validResult.focusInvalid();}});
+		$("#saveChanges").click();
 	});
 </script>
 

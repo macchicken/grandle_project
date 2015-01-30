@@ -102,6 +102,6 @@ public class Person {
 	public String toString(){
 		return "First Name: "+firstName+"| Last Name: "+lastName+"| Email: "+email+ "| Phone number:"+phone+"| Age: "+age+" Favorite Sport: " + sport
 				+"| Gender: " + gender + "| Residency: " + residency + "| Over 21: " + isOver21()
-				+"| Car models: " + Arrays.asList(getCarModels());
+				+"| Car models: " + Arrays.asList(getCarModels()==null?new String[0]:getCarModels());
 	}
 }

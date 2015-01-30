@@ -30,8 +30,8 @@
 				       <s:param name="id" value="id"/>
 			    </s:url>
 			    
-	  			<a href="${editUrl}" >Edit</a>
-	  			<a href="${deleteUrl}" >Delete</a>
+	  			<a href="javascript:void(0)" urllink="${editUrl}">Edit</a>
+	  			<a href="javascript:void(0)" urllink="${deleteUrl}">Delete</a>
 	  		</li>
 		</s:iterator>
        </ol>
@@ -45,7 +45,21 @@
        <s:param name="id" value="0"/>
      </s:url>
      
-    <p><a href="${newUrl}" > Create new person.</a></p>
-    <p><a href="<s:url action='index' />" >back to hello word Welcome</a>.</p>
+    <p><a href="javascript:void(0)" urllink="${newUrl}"> Create new person.</a></p>
+    <p><a href="javascript:void(0)" urllink="<s:url action='index' />">back to hello world Welcome</a>.</p>
+	<script type="text/javascript">
+		$(function ($) {
+			console.log($("ol"));var temp=$("ol")[0].nextElementSibling;
+			$(temp.firstChild).click(function(){
+				var urllink=$(this).attr('urllink');
+				$("#page-content-area").load(urllink,null, function () {console.log("Create new person div load partial page")});});
+			$(temp.nextElementSibling.firstChild).click(function(){
+				var urllink=$(this).attr('urllink');
+				$("#page-content-area").load(urllink,null, function () {console.log("back to hello world Welcome div load partial page")});});
+			$("ol").find('a').each(function(i,e){
+				$(e).click(function(){$("#page-content-area").load($(e).attr('urllink'),null,function(){console.log('personList div load');});});
+			});
+		})
+	</script>
   </body>
 </html>
