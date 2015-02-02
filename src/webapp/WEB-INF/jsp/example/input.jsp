@@ -23,11 +23,13 @@
 		  	<s:submit value="Save" />
 		  </s:form>-->
 		  <form id="saveOrUpdatePersonForm" name="saveOrUpdatePersonForm" action="/grandle_project-1.0/example/saveOrUpdatePerson.action" onsubmit="return false;" method="post">
-			<p></p><br><p></p><table class="wwFormTable">
+			<p></p><table class="wwFormTable">
 		  	<tbody>
 				<s:textfield name="person.firstName" label="First name" />
 				<s:textfield name="person.lastName" label="Last name" />
 				<s:hidden name="person.id" />
+				<tr><td colspan="2"><p></p></tr>
+				<tr><td colspan="2"><p></p></tr>
 				<tr>
 					<td colspan="2"><div align="right"><input type="submit" id="saveOrUpdatePerson" value="Save"></div></td>
 				</tr>
@@ -46,7 +48,10 @@
 								"person.lastName":{ required:true}},
 							messages: {
 								"person.firstName": {required:"must have first name"},
-								"person.lastName": {required:"must have last name"}}
+								"person.lastName": {required:"must have last name"}},
+							errorPlacement: function (error, element) {
+								element.attr({ placeholder: error.text() })
+							}
 							});};
 				$("#saveOrUpdatePerson").click(function(){
 					var validResult = personValidate();console.log(validResult);
